@@ -71,15 +71,13 @@ Timer is super lightweight at 50kb.
        $(this).jPlayer("setMedia", {
          mp3: "yay3.mp3"
        }).jPlayer();
-       var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
-       var kickoff = function () {
-         $("#jquery_jplayer_1").jPlayer("play");
-        //  document.documentElement.removeEventListener(click, kickoff, true);
-       };
-       document.documentElement.addEventListener(click, kickoff, true);
+      //  var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
+      //  var kickoff = function () {
+      //    $("#jquery_jplayer_1").jPlayer("play");
+      //  };
+      //  document.documentElement.addEventListener(click, kickoff, true);
      },
      swfPath: "/js"
-    //  loop: true
    })
  })
 
@@ -118,16 +116,7 @@ Timer is super lightweight at 50kb.
    if (document.getElementById("value").innerText != "0") {
      document.getElementById("value").innerText = document.getElementById("value").innerText - 1
    } else {
-
      $("#jquery_jplayer_1").jPlayer("play")
-
-    // var blastSound = new WebAudioAPISound("/yay3.mp3")
-    // blastSound.play()
-    //
-
-
-    //  var audio = new Audio('/yay3.mp3')
-    //  audio.play()
      stop()
    }
  }
