@@ -1,9 +1,11 @@
-<meta charset="utf-8">
-<meta name="apple-mobile-web-app-capable" content="yes"/>
 
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
 <style media="screen">
 .youtube_button {
   color:white;
@@ -31,31 +33,13 @@ html, body {
 
 <body>
 
-  <!-- <audio controls>
-
-    <source src="yay.mp3" type="audio/mpeg">
-
-  Your browser does not support the audio element.
-  </audio>
-
-  <audio controls>
-
-    <source src="yay2.mp3" type="audio/mpeg">
-
-  Your browser does not support the audio element.
-  </audio>
-
-
-  <audio controls>
-
-    <source src="yay3.mp3" type="audio/mpeg">
-
-    Your browser does not support the audio element.
-  </audio> -->
 
   <!-- <canvas id="world"></canvas> -->
 
   <div class="">
+
+    <div id="jquery_jplayer_1"></div>
+
     <div id="value" class="white">
       5
     </div>
@@ -81,9 +65,27 @@ Timer is created for autistic kids. But you can also use it to motivate your chi
 Timer is super lightweight at 50kb.
 
  <script type="text/javascript">
+ $(document).ready(function(){
+   $("#jquery_jplayer_1").jPlayer({
+     ready: function() {
+       $(this).jPlayer("setMedia", {
+         mp3: "http://www.jplayer.org/audio/mp3/Miaow-snip-Stirring-of-a-fool.mp3"
+       }).jPlayer("play");
+       var click = document.ontouchstart === undefined ? 'click' : 'touchstart';
+       var kickoff = function () {
+         $("#jquery_jplayer_1").jPlayer("play");
+         document.documentElement.removeEventListener(click, kickoff, true);
+       };
+       document.documentElement.addEventListener(click, kickoff, true);
+     },
+     swfPath: "/js",
+     loop: true
+   })
+ })
 
  document.addEventListener("DOMContentLoaded", function(event) {
    window.default = 5
+
  })
 
 
@@ -118,9 +120,9 @@ Timer is super lightweight at 50kb.
    } else {
 
 
-    var blastSound = new WebAudioAPISound("/yay3.mp3")
-    blastSound.play()
-
+    // var blastSound = new WebAudioAPISound("/yay3.mp3")
+    // blastSound.play()
+    //
 
 
     //  var audio = new Audio('/yay3.mp3')
