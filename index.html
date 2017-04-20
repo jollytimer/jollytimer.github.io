@@ -44,14 +44,13 @@ html, body {
 
     <div id="jquery_jplayer_1"></div>
 
-    <div onclick="countDown();" id="value" class="white">
+    <div onclick="press();" id="value" class="white">
       5
     </div>
 
-
     <!-- <button onclick="countDown();" class="youtube_button" type="button" name="button">▶</button>
     <button onclick="stop();" class="youtube_button" type="button" name="button">❚❚</button> -->
-    <!-- <button onclick="restart();" class="youtube_button" type="button" name="button">❚❚</button> -->
+
     <a onclick="restart();" href="#">restart</a>
 
     <br>
@@ -130,7 +129,7 @@ Timer is super lightweight at 50kb.
  })
 
 
- function restart(){
+ function restart() {
    document.getElementById("value").innerText = window.default
    stop()
  }
@@ -140,6 +139,17 @@ Timer is super lightweight at 50kb.
    document.getElementById("value").innerText = timing
    stop()
  }
+
+ function press() {
+     if(window.running != true) {
+       window.interval =  setInterval(changeNumber,1000)
+       window.running = true
+     }
+     else {
+       stop()
+     }
+ }
+
 
  function countDown(){
    if(window.running != true) {
