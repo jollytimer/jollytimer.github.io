@@ -1,0 +1,353 @@
+<meta charset="utf-8">
+<head>
+<style media="screen">
+.youtube_button {
+  color:white;
+  background:#cc181e;
+}
+
+#value {
+    font-size: 100px;
+}
+
+.white {
+  color:white;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #111;
+}
+</style>
+
+</head>
+
+<body>
+
+  <!-- <audio controls>
+
+    <source src="yay.mp3" type="audio/mpeg">
+
+  Your browser does not support the audio element.
+  </audio>
+
+  <audio controls>
+
+    <source src="yay2.mp3" type="audio/mpeg">
+
+  Your browser does not support the audio element.
+  </audio>
+
+
+  <audio controls>
+
+    <source src="yay3.mp3" type="audio/mpeg">
+
+    Your browser does not support the audio element.
+  </audio> -->
+
+  <!-- <canvas id="world"></canvas> -->
+
+  <div class="">
+    <div id="value" class="white">
+      5
+    </div>
+
+
+    <button onclick="countDown();" class="youtube_button" type="button" name="button">▶</button>
+    <button onclick="stop();" class="youtube_button" type="button" name="button">❚❚</button>
+    <!-- <button onclick="restart();" class="youtube_button" type="button" name="button">❚❚</button> -->
+    <a onclick="restart();" href="#">restart</a>
+
+    <br>
+    <button onclick="setTiming(5);" type="button" name="button">5.</button>
+    <button onclick="setTiming(10);" type="button" name="button">10.</button>
+    <button onclick="setTiming(15);" type="button" name="button">15.</button>
+    <button onclick="setTiming(20);" type="button" name="button">20.</button>
+    <button onclick="setTiming(25);" type="button" name="button">25.</button>
+    <button onclick="setTiming(30);" type="button" name="button">30.</button>
+    <button type="button" name="button">Custom.</button>
+  </div>
+</body>
+
+Timer is created for autistic kids. But you can also use it to motivate your children.
+Timer is super lightweight at 50kb.
+
+ <script type="text/javascript">
+
+ document.addEventListener("DOMContentLoaded", function(event) {
+   window.default = 5
+ })
+
+
+ function restart(){
+   document.getElementById("value").innerText = window.default
+   stop()
+ }
+
+ function setTiming(timing) {
+   window.default = timing
+   document.getElementById("value").innerText = timing
+   stop()
+ }
+
+ function countDown(){
+  window.interval =  setInterval(changeNumber,1000)
+ }
+
+ function stop(){
+   clearInterval(window.interval)
+ }
+
+
+ function changeNumber() {
+   if (document.getElementById("value").innerText != "0") {
+     document.getElementById("value").innerText = document.getElementById("value").innerText - 1
+   } else {
+     var audio = new Audio('yay3.mp3')
+     audio.play()
+     stop()
+   }
+ }
+
+function confetti() {
+  alert("confetti")
+  var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
+
+  NUM_CONFETTI = 350;
+
+  COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
+
+  PI_2 = 2 * Math.PI;
+
+  canvas = document.getElementById("world");
+
+  context = canvas.getContext("2d");
+
+  window.w = 0;
+
+  window.h = 0;
+
+  resizeWindow = function() {
+    window.w = canvas.width = window.innerWidth;
+    return window.h = canvas.height = window.innerHeight;
+  };
+
+  window.addEventListener('resize', resizeWindow, false);
+
+  window.onload = function() {
+    return setTimeout(resizeWindow, 0);
+  };
+
+  range = function(a, b) {
+    return (b - a) * Math.random() + a;
+  };
+
+  drawCircle = function(x, y, r, style) {
+    context.beginPath();
+    context.arc(x, y, r, 0, PI_2, false);
+    context.fillStyle = style;
+    return context.fill();
+  };
+
+  xpos = 0.5;
+
+  document.onmousemove = function(e) {
+    return xpos = e.pageX / w;
+  };
+
+  window.requestAnimationFrame = (function() {
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+      return window.setTimeout(callback, 1000 / 60);
+    };
+  })();
+
+  Confetti = (function() {
+    function Confetti() {
+      this.style = COLORS[~~range(0, 5)];
+      this.rgb = "rgba(" + this.style[0] + "," + this.style[1] + "," + this.style[2];
+      this.r = ~~range(2, 6);
+      this.r2 = 2 * this.r;
+      this.replace();
+    }
+
+    Confetti.prototype.replace = function() {
+      this.opacity = 0;
+      this.dop = 0.03 * range(1, 4);
+      this.x = range(-this.r2, w - this.r2);
+      this.y = range(-20, h - this.r2);
+      this.xmax = w - this.r;
+      this.ymax = h - this.r;
+      this.vx = range(0, 2) + 8 * xpos - 5;
+      return this.vy = 0.7 * this.r + range(-1, 1);
+    };
+
+    Confetti.prototype.draw = function() {
+      var ref;
+      this.x += this.vx;
+      this.y += this.vy;
+      this.opacity += this.dop;
+      if (this.opacity > 1) {
+        this.opacity = 1;
+        this.dop *= -1;
+      }
+      if (this.opacity < 0 || this.y > this.ymax) {
+        this.replace();
+      }
+      if (!((0 < (ref = this.x) && ref < this.xmax))) {
+        this.x = (this.x + this.xmax) % this.xmax;
+      }
+      return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + this.opacity + ")");
+    };
+
+    return Confetti;
+
+  })();
+
+  confetti = (function() {
+    var j, ref, results;
+    results = [];
+    for (i = j = 1, ref = NUM_CONFETTI; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+      results.push(new Confetti);
+    }
+    return results;
+  })();
+
+  window.step = function() {
+    var c, j, len, results;
+    requestAnimationFrame(step);
+    context.clearRect(0, 0, w, h);
+    results = [];
+    for (j = 0, len = confetti.length; j < len; j++) {
+      c = confetti[j];
+      results.push(c.draw());
+    }
+    return results;
+  };
+
+  step();
+}
+
+ // (function() {
+ //   var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
+ //
+ //   NUM_CONFETTI = 350;
+ //
+ //   COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
+ //
+ //   PI_2 = 2 * Math.PI;
+ //
+ //   canvas = document.getElementById("world");
+ //
+ //   context = canvas.getContext("2d");
+ //
+ //   window.w = 0;
+ //
+ //   window.h = 0;
+ //
+ //   resizeWindow = function() {
+ //     window.w = canvas.width = window.innerWidth;
+ //     return window.h = canvas.height = window.innerHeight;
+ //   };
+ //
+ //   window.addEventListener('resize', resizeWindow, false);
+ //
+ //   window.onload = function() {
+ //     return setTimeout(resizeWindow, 0);
+ //   };
+ //
+ //   range = function(a, b) {
+ //     return (b - a) * Math.random() + a;
+ //   };
+ //
+ //   drawCircle = function(x, y, r, style) {
+ //     context.beginPath();
+ //     context.arc(x, y, r, 0, PI_2, false);
+ //     context.fillStyle = style;
+ //     return context.fill();
+ //   };
+ //
+ //   xpos = 0.5;
+ //
+ //   document.onmousemove = function(e) {
+ //     return xpos = e.pageX / w;
+ //   };
+ //
+ //   window.requestAnimationFrame = (function() {
+ //     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(callback) {
+ //       return window.setTimeout(callback, 1000 / 60);
+ //     };
+ //   })();
+ //
+ //   Confetti = (function() {
+ //     function Confetti() {
+ //       this.style = COLORS[~~range(0, 5)];
+ //       this.rgb = "rgba(" + this.style[0] + "," + this.style[1] + "," + this.style[2];
+ //       this.r = ~~range(2, 6);
+ //       this.r2 = 2 * this.r;
+ //       this.replace();
+ //     }
+ //
+ //     Confetti.prototype.replace = function() {
+ //       this.opacity = 0;
+ //       this.dop = 0.03 * range(1, 4);
+ //       this.x = range(-this.r2, w - this.r2);
+ //       this.y = range(-20, h - this.r2);
+ //       this.xmax = w - this.r;
+ //       this.ymax = h - this.r;
+ //       this.vx = range(0, 2) + 8 * xpos - 5;
+ //       return this.vy = 0.7 * this.r + range(-1, 1);
+ //     };
+ //
+ //     Confetti.prototype.draw = function() {
+ //       var ref;
+ //       this.x += this.vx;
+ //       this.y += this.vy;
+ //       this.opacity += this.dop;
+ //       if (this.opacity > 1) {
+ //         this.opacity = 1;
+ //         this.dop *= -1;
+ //       }
+ //       if (this.opacity < 0 || this.y > this.ymax) {
+ //         this.replace();
+ //       }
+ //       if (!((0 < (ref = this.x) && ref < this.xmax))) {
+ //         this.x = (this.x + this.xmax) % this.xmax;
+ //       }
+ //       return drawCircle(~~this.x, ~~this.y, this.r, this.rgb + "," + this.opacity + ")");
+ //     };
+ //
+ //     return Confetti;
+ //
+ //   })();
+ //
+ //   confetti = (function() {
+ //     var j, ref, results;
+ //     results = [];
+ //     for (i = j = 1, ref = NUM_CONFETTI; 1 <= ref ? j <= ref : j >= ref; i = 1 <= ref ? ++j : --j) {
+ //       results.push(new Confetti);
+ //     }
+ //     return results;
+ //   })();
+ //
+ //   window.step = function() {
+ //     var c, j, len, results;
+ //     requestAnimationFrame(step);
+ //     context.clearRect(0, 0, w, h);
+ //     results = [];
+ //     for (j = 0, len = confetti.length; j < len; j++) {
+ //       c = confetti[j];
+ //       results.push(c.draw());
+ //     }
+ //     return results;
+ //   };
+ //
+ //   step();
+ //
+ // }).call(this);
+
+
+ </script>
