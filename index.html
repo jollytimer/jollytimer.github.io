@@ -10,14 +10,13 @@
 
 <style media="screen">
 
-.orientleft #shell {
-    -webkit-transform: rotate(-90deg);
-    -webkit-transform-origin:160px 160px;
-}
-
-.orientright #shell {
+.portrait {
     -webkit-transform: rotate(90deg);
-    -webkit-transform-origin:230px 230px;
+    -webkit-transform-origin: 200px 190px;
+}
+.portrait-onready {
+    -webkit-transform: rotate(90deg);
+    -webkit-transform-origin: 165px 150px;
 }
 
 .youtube_button {
@@ -83,17 +82,18 @@ html, body {
 
  $(document).ready(function(){
 
-   window.addEventListener('orientationchange', function () {
-      if (window.orientation == -90) {
-          document.getElementById('orient').className = 'orientright';
+   $(window).bind('orientationchange', function(e, onready){
+      if(onready){
+          $(document.body).addClass('portrait-onready');
       }
-      if (window.orientation == 90) {
-          document.getElementById('orient').className = 'orientleft';
+      if (Math.abs(window.orientation) != 90){
+          $(document.body).addClass('portrait');
       }
-      if (window.orientation == 0) {
-          document.getElementById('orient').className = '';
+      else {
+          $(document.body).removeClass('portrait').removeClass('portrait-onready');
       }
-  }, true);
+   });
+   $(window).trigger('orientationchange', true); // fire the orientation change event at the start, to make sure
 
   //  window.screen.orientation.lock("portrait-primary");
 
