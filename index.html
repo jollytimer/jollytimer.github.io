@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jplayer/2.9.2/jplayer/jquery.jplayer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 
 <style media="screen">
 .youtube_button {
@@ -102,7 +103,7 @@ html, body {
       window.color = "#6a67ce"
       break;
     case 4:
-       window.color = "#5ecc62"
+       window.color = "#4d4f53"
        break;
     case 5:
        window.color = "#70b29c"
@@ -193,24 +194,14 @@ html, body {
 
  function setup() {
    var COLORS, Confetti, NUM_CONFETTI, PI_2, canvas, confetti, context, drawCircle, i, range, resizeWindow, xpos;
-
    NUM_CONFETTI = 350;
-
    COLORS = [[85, 71, 106], [174, 61, 99], [219, 56, 83], [244, 92, 68], [248, 182, 70]];
-
    PI_2 = 2 * Math.PI;
-
-
    canvas = document.getElementById("world");
-
    context = canvas.getContext("2d");
-
    window.w = 0;
-
    window.h = 0;
-
    window.addEventListener('resize', resizeWindow, false);
-
    window.onload = function() {
      return setTimeout(resizeWindow, 0);
    };
