@@ -10,14 +10,14 @@
 
 <style media="screen">
 
-.portrait {
+/*.portrait {
     -webkit-transform: rotate(90deg);
     -webkit-transform-origin: 200px 190px;
 }
 .portrait-onready {
     -webkit-transform: rotate(90deg);
     -webkit-transform-origin: 165px 150px;
-}
+}*/
 
 .youtube_button {
   color:white;
@@ -65,13 +65,13 @@ html, body {
     <a onclick="restart();" href="#">restart</a>
 
     <br>
-    <button onclick="setTiming(5);" type="button" name="button">5.</button>
+    <!-- <button onclick="setTiming(5);" type="button" name="button">5.</button>
     <button onclick="setTiming(10);" type="button" name="button">10.</button>
     <button onclick="setTiming(15);" type="button" name="button">15.</button>
     <button onclick="setTiming(20);" type="button" name="button">20.</button>
     <button onclick="setTiming(25);" type="button" name="button">25.</button>
     <button onclick="setTiming(30);" type="button" name="button">30.</button>
-    <button onclick="showConfetti();" type="button" name="button">Custom.</button>
+    <button onclick="showConfetti();" type="button" name="button">Custom.</button> -->
   </div>
 
 </body>
@@ -82,18 +82,18 @@ html, body {
 
  $(document).ready(function(){
 
-   $(window).bind('orientationchange', function(e, onready){
-      if(onready){
-          $(document.body).addClass('portrait-onready');
-      }
-      if (Math.abs(window.orientation) != 90){
-          $(document.body).addClass('portrait');
-      }
-      else {
-          $(document.body).removeClass('portrait').removeClass('portrait-onready');
-      }
-   });
-   $(window).trigger('orientationchange', true); // fire the orientation change event at the start, to make sure
+  //  $(window).bind('orientationchange', function(e, onready){
+  //     if(onready){
+  //         $(document.body).addClass('portrait-onready');
+  //     }
+  //     if (Math.abs(window.orientation) != 90){
+  //         $(document.body).addClass('portrait');
+  //     }
+  //     else {
+  //         $(document.body).removeClass('portrait').removeClass('portrait-onready');
+  //     }
+  //  });
+  //  $(window).trigger('orientationchange', true); // fire the orientation change event at the start, to make sure
 
   //  window.screen.orientation.lock("portrait-primary");
 
@@ -129,7 +129,7 @@ html, body {
  })
 
  document.addEventListener("DOMContentLoaded", function(event) {
-   window.default = 5
+   window.default = 30
    window.random = Math.floor((Math.random() * 10) + 1);
    switch(window.random) {
      case 1:
