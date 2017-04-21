@@ -12,10 +12,10 @@
 
 <style media="screen">
 
-.circle {
+/*.circle {
     border: 10px solid black;
     border-radius: 200px;
-}
+}*/
 
 /*.portrait {
     -webkit-transform: rotate(90deg);
@@ -50,6 +50,81 @@ html, body {
   overflow: hidden;
   background: #111;
 }
+
+@import url("http://fonts.googleapis.com/css?family=Roboto:300");
+
+/*h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #fff;
+}*/
+.play-button {
+  height: 300px;
+  width: 300px;
+  display: block;
+  margin: 60px auto;
+  overflow: hidden;
+  position: relative;
+}
+.left {
+  height: 100%;
+  float: left;
+  background-color: #fff;
+  width: 36%;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  overflow: hidden;
+}
+.triangle-1 {
+  -webkit-transform: translate(0, -100%);
+          transform: translate(0, -100%);
+}
+.triangle-2 {
+  -webkit-transform: translate(0, 100%);
+          transform: translate(0, 100%);
+}
+.triangle-1,
+.triangle-2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  border-right: 300px solid #c0392b;
+  border-top: 150px solid transparent;
+  border-bottom: 150px solid transparent;
+  -webkit-transition: -webkit-transform 0.25s ease;
+  transition: -webkit-transform 0.25s ease;
+  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, -webkit-transform 0.25s ease;
+}
+.right {
+  height: 100%;
+  float: right;
+  width: 36%;
+  background-color: #fff;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+}
+.paused .left {
+  width: 50%;
+}
+.paused .right {
+  width: 50%;
+}
+.paused .triangle-1 {
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+}
+.paused .triangle-2 {
+  -webkit-transform: translate(0, 50%);
+          transform: translate(0, 50%);
+}
+
+
 </style>
 
 </head>
@@ -67,6 +142,13 @@ html, body {
         30
       </div>
     </div>
+
+    <a class="play-button" href="#">
+      <div class="left"></div>
+      <div class="right"></div>
+      <div class="triangle-1"></div>
+      <div class="triangle-2"></div>
+    </a>
 
     <!-- <button onclick="countDown();" class="youtube_button" type="button" name="button">▶</button>
     <button onclick="stop();" class="youtube_button" type="button" name="button">❚❚</button> -->
@@ -191,10 +273,19 @@ html, body {
      if(window.running != true) {
        window.interval =  setInterval(changeNumber,1000)
        window.running = true
+       animatePlayPause()
      }
      else {
        stop()
      }
+ }
+
+ function animatePlayPause() {
+  //  $(".play-button").click(function() {
+  //   });
+
+    $(".play-button").toggleClass("paused");
+
  }
 
 
@@ -208,6 +299,7 @@ html, body {
  function stop(){
    clearInterval(window.interval)
    window.running = false
+   animatePlayPause()
  }
 
 
