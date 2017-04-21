@@ -9,6 +9,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 
 <style media="screen">
+
+.orientleft #shell {
+    -webkit-transform: rotate(-90deg);
+    -webkit-transform-origin:160px 160px;
+}
+
+.orientright #shell {
+    -webkit-transform: rotate(90deg);
+    -webkit-transform-origin:230px 230px;
+}
+
 .youtube_button {
   color:white;
   background:#cc181e;
@@ -37,7 +48,7 @@ html, body {
 
 </head>
 
-<body>
+<body id="orient">
 
   <canvas id="world">  </canvas>
 
@@ -68,7 +79,21 @@ html, body {
 
 
  <script type="text/javascript">
+
+
  $(document).ready(function(){
+
+   window.addEventListener('orientationchange', function () {
+      if (window.orientation == -90) {
+          document.getElementById('orient').className = 'orientright';
+      }
+      if (window.orientation == 90) {
+          document.getElementById('orient').className = 'orientleft';
+      }
+      if (window.orientation == 0) {
+          document.getElementById('orient').className = '';
+      }
+  }, true);
 
   //  window.screen.orientation.lock("portrait-primary");
 
