@@ -12,6 +12,11 @@
 
 <style media="screen">
 
+.circle {
+    border: 10px solid black;
+    border-radius: 200px;
+}
+
 /*.portrait {
     -webkit-transform: rotate(90deg);
     -webkit-transform-origin: 200px 190px;
@@ -57,8 +62,10 @@ html, body {
 
     <div id="jquery_jplayer_1"></div>
 
-    <div onclick="press();" id="value" class="white">
-      30
+    <div class="circle">
+      <div onclick="press();" id="value" class="white">
+        30
+      </div>
     </div>
 
     <!-- <button onclick="countDown();" class="youtube_button" type="button" name="button">▶</button>
