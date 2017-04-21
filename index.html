@@ -70,19 +70,20 @@ html, body {
  <script type="text/javascript">
  $(document).ready(function(){
 
-   lockedAllowed = window.screen.lockOrientation("portrait-primary");
+   window.screen.orientation.lock("portrait-primary");
 
-   screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
-
-   if (screen.lockOrientationUniversal("portrait-primary")) {
-     // orientation was locked
-     alert("screen is locked")
-   } else {
-     alert("screen is not locked. Will try with safari api.")
-
-     // orientation lock failed
-     screen.orientation.lock("portrait-primary");
-   }
+  //  lockedAllowed = window.screen.lockOrientation("portrait-primary");
+   //
+  //  screen.lockOrientationUniversal = screen.lockOrientation || screen.mozLockOrientation || screen.msLockOrientation;
+   //
+  //  if (screen.lockOrientationUniversal("portrait-primary")) {
+  //    // orientation was locked
+  //    alert("screen is locked")
+  //  } else {
+  //    alert("screen is not locked. Will try with safari api.")
+   //
+  //    // orientation lock failed
+  //  }
 
    $("#jquery_jplayer_1").jPlayer({
      ready: function() {
@@ -95,7 +96,7 @@ html, body {
         //   window.context.clearRect(0, 0, window.canvas.width, window.canvas.height);
 
          //stop the confetti
-        //  $("#jquery_jplayer_1").jPlayer("play");
+         $("#jquery_jplayer_1").jPlayer("play");
        };
         document.documentElement.addEventListener(click, kickoff, true);
      },
