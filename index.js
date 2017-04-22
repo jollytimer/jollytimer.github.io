@@ -11,7 +11,7 @@ $(document).ready(function(){
 
   var icon = $('.play');
    icon.click(function() {
-      icon.toggleClass('active');
+      // $('.play').toggleClass('active');
       return false;
    });
 
@@ -96,13 +96,7 @@ function press() {
       $('#square').animateCss("zoomIn");
       $('#square').text("Pause")
       stop()
-      $('.play').toggleClass('active')
-
     }
-}
-
-function animatePlayPause() {
-   $(".play-button").toggleClass("paused");
 }
 
 
@@ -116,7 +110,8 @@ function countDown(){
 function stop(){
   clearInterval(window.interval)
   window.running = false
-  animatePlayPause()
+  $('.play').toggleClass('active')
+  $('#square').text("restart")
 }
 
 
@@ -137,7 +132,6 @@ function showConfetti(){
   window.context = context
 
   window.w = 0;
-
   window.h = 0;
 
   resizeWindow = function() {
